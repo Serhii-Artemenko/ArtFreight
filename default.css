@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    margin: 0; 
+}
+
+
+.hamburger {
+    display: none; /* Hide hamburger on big screens */
+}
+
+.navBar {
+    display: flex; /* Keep the nav bar visible on big screens */
+}
+
+.hamUnderline{
+    text-decoration: none;
+    color: #19325B;
+}
+
+.navB:hover, .uBarNoSing:hover  {
+    color: #F9A91A;
+}
+
+.wrapAnchor{
+    text-decoration: none;
+}
+.Request:hover, .signUp:hover {
+    color: #a6b1a6;
+}

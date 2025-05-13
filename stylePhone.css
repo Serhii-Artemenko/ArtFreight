@@ -1,0 +1,166 @@
+@media screen and (max-width: 630px) {
+    .header {
+        background-color: white; 
+        display: flex;
+        width: 100%;
+        height: 11vh;
+
+
+        
+    }
+
+    .logo {
+        height: 100%;
+    }
+
+    .logo img {
+        height: 100%;
+        width: auto;
+    }
+
+    /* Show Hamburger Icon on Mobile */
+    .hamburger {
+        display: block; 
+        font-size: 25px;
+  
+    }
+
+   
+    .navBar {
+        display: none; /* Hide nav bar on mobile */
+    }
+
+    /* Show navBar when Toggled */
+    .navBar.show {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 11vh;
+
+        width: 50%;
+        background-color: white;
+
+    }
+
+    .navB {
+        text-decoration: none;
+        color: black;
+        padding: 15px;
+        font-family: 'Segoe UI';
+        font-size: 15px; 
+        
+    }
+
+    .utilNavBar {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+    }
+
+    .uBarNoSing {
+        text-decoration: none;
+        color: black;
+        font-family: 'Segoe UI light';
+        font-size: 14px;
+    }
+
+    .signUp {
+        border: none;
+        background-color: #28883A;
+        color: white;
+        padding: 8px 15px;
+        font-family: 'Segoe UI';
+        font-size: 14px;
+    }
+
+
+    .blueBlock {
+        background-color: #19325B;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .See {
+
+        padding-top: 20px;
+        text-align: center;
+        color: white;
+
+        font-weight: 700;
+        font-family: 'Segoe UI';
+        font-size: 30px; 
+
+        }
+
+
+    .Our {
+        width: 65%;
+        margin: auto;
+        padding-top: 28px;
+        text-align: center;
+        color: white;
+
+        font-weight: 200;
+        font-family: 'Segoe UI';
+        font-size: 15px; 
+
+
+    }
+
+    .button {
+        text-align: center;
+        margin: auto;
+    }
+
+    .Request {
+        display: block; 
+
+        margin: 60px auto;
+
+
+        background-color: #28883A;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+
+    }
+
+   
+    .blockWithImages {
+        display: flex;
+        flex-direction: column; /* images vertically */
+        align-items: center;
+        padding: 20px;
+    }
+
+    .blockWithImages > div {
+        width: 80%;
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .icon img {
+        width: 50%; 
+        height: auto;
+    }
+
+    .iconNumb {
+        color: black;
+        font-family: 'Segoe UI';
+        font-weight: 600;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .textUnderImg {
+        text-decoration: none;
+        color: black;
+        font-size: 12px;
+        font-family: 'Segoe UI light';
+        margin-top: 5px;
+        text-align: center;
+    }
+}

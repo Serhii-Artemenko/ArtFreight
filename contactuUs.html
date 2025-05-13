@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="styleDesktopLaptop.css">
+    <link rel="stylesheet" href="styleTablet.css">
+    <link rel="stylesheet" href="stylePhone.css">
+
+
+</head>
+
+<body>
+    <header class="header">
+        <div class = "logo">
+            <img src="LOGO.jpg" alt="Logo">
+        </div>
+
+        <div class="hamburger" onclick="dropDownMenu()">
+           <a class = "hamUnderline" href = "#">☰</a> 
+        </div>
+
+        <!-- navigation bar -->
+        <!-- <div class="navBar">
+            <a class="navB" href="#">Platform</a>
+            <a class="navB" href="#">Plans</a>
+            <a class="navB" href="#">Enterprise</a>
+            <a class="navB" href="#">Education</a>
+        </div> -->
+
+        <!-- Utility navigation bar -->
+        <div class="utilNavBar">
+            <a class = "uBarNoSing" href="LandingPageCopy.html">Home</a>
+            <a class = "uBarNoSing" href="#">About Us</a>
+            <a class = "uBarNoSing" href="#">What we offer</a>
+            <a class = "uBarNoSing" href="#">Contact Us</a>
+            <!-- <a class="signUp" href="https://profile.w3schools.com/signup?redirect_url=https%3A%2F%2Fwww.w3schools.com%2Fhtml%2Fhtml_images.asp" target = "_blank">Sign Up</a> -->
+        </div>
+        
+    </header>
+ 
+
+    <div class="outercontainer">
+        <div class="contact">
+            <form action="action_page.php">
+        
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        
+        
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        
+            <input type="submit" value="Submit">
+        
+            </form>
+        </div>
+        <div class="lizard">
+            <img src="bestLizardYet.png" alt="Logo">
+
+        </div>
+      </div>
+
+      
+
+    <script>
+        function dropDownMenu() {
+            const navBar = document.querySelector('.navBar');
+            navBar.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

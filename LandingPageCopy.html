@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" href="styleDesktopLaptop.css">
+    <link rel="stylesheet" href="styleTablet.css">
+    <link rel="stylesheet" href="stylePhone.css">
+
+
+</head>
+
+<body>
+    <header class="header">
+        <div class = "logo">
+            <img src="LOGO.jpg" alt="Logo">
+        </div>
+
+        <div class="hamburger" onclick="dropDownMenu()">
+           <a class = "hamUnderline" href = "#">☰</a> 
+        </div>
+
+        <!-- navigation bar -->
+        <!-- <div class="navBar">
+            <a class="navB" href="#">Platform</a>
+            <a class="navB" href="#">Plans</a>
+            <a class="navB" href="#">Enterprise</a>
+            <a class="navB" href="#">Education</a>
+        </div> -->
+
+        <!-- Utility navigation bar -->
+        <div class="utilNavBar">
+            <a class = "uBarNoSing" href="#">Home</a>
+            <a class = "uBarNoSing" href="#">About Us</a>
+            <a class = "uBarNoSing" href="#">What we offer</a>
+            <a class = "uBarNoSing" href="contactuUs.html">Contact Us</a>
+            <!-- <a class="signUp" href="https://profile.w3schools.com/signup?redirect_url=https%3A%2F%2Fwww.w3schools.com%2Fhtml%2Fhtml_images.asp" target = "_blank">Sign Up</a> -->
+        </div>
+        
+    </header>
+
+    <div class="blueBlock">
+        <div class = "See">
+            We are the best logistics solution!
+        </div>
+
+        <p class = "Our">
+            we are professionals offering a variety of services ranging from x to y. If you have any questions just drop us an email!
+        </p>
+
+        <a href= "contactuUs.html" class = "wrapAnchor" target="_blank">
+            <button  class = "Request">
+                contact us! 
+            </button>
+        </a>
+        
+    </div>
+
+    <div class="blockWithImages">
+        <div class="icon">
+            <img src="rocket.png" alt="Image 1">
+            <p class = "iconNumb"></p>
+            <p class = "textUnderImg" href = "#">
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+            </p>
+   
+            
+        </div>
+        
+        <div class="icon">
+            <img src="paper.png" alt="Image 2">
+            <p class = "iconNumb"></p>
+            <p class = "textUnderImg" href = "#">
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+
+        <div class="icon">
+            <img src="people.png" alt="Image 3">
+            <p class = "iconNumb"></p>
+            <p class = "textUnderImg" >
+                Duis aute irure dolor in reprehenderit in voluptate velit 
+
+            </p>
+        </div>
+        
+    </div>
+
+    <script>
+        function dropDownMenu() {
+            const navBar = document.querySelector('.navBar');
+            navBar.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
