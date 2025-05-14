@@ -4,15 +4,9 @@
         background-color: white;
         display: flex;
         width: 100%;
-        height: 18vh;
-        align-items: center;  
-        
+        height: 100px;
     }
 
-    .logo {
-        height: 100%;
-    }
-    
     .logo img {
         height: 100%; 
         width: auto; /* for good aspect ratio */
@@ -45,6 +39,7 @@
         text-decoration: none;
     }
 
+    /* this is for desktop/laptop header */
     .uBarNoSing {
         text-decoration: none;
         color: black;
@@ -64,109 +59,14 @@
         font-size: 12px;
         font-weight: 600;
 
-    
        
     }
 
-    .blueBlock {
-        background-color: #19325B;
+    .gaudiImgContainer {
         width: 100%;
-        height: 44%;
+        height: calc((100% - 100px)); 
 
-
-        
-    }
-
-    .See {
-
-        padding-top: 40px;
-        text-align: center;
-        color: white;
-
-        font-weight: 700;
-        font-family: 'Segoe UI';
-        font-size: 45px; 
-
-        }
-
-
-    .Our {
-        width: 23%;
-        margin: auto;
-        padding-top: 20px;
-        text-align: center;
-        color: white;
-
-        font-weight: 200;
-        font-family: 'Segoe UI';
-        font-size: 15px; 
-
-
-    }
-
-    .button {
-        text-align: center;
-        
-        margin: auto;
-        
-        
-
-    }
-
-    .Request {
-        display: block; 
-        
-        margin: 45px auto;
-
-
-        background-color: #28883A;
-        border: none;
-        color: white;
-        padding: 15px 25px;
-
-
-
-    }
-
-    .blockWithImages{
-        display: flex;
-
-    }
-
-    .blockWithImages > div{
-        background-color: white;
-        width: 33vw;
-        margin: 3vw 3vw;
-        display: flex;
-
-        align-items: center;
-        flex-direction: column;
-
-
-
-    }
-
-    .icon img {
-        width: 100px; /* Set a fixed width to make images smaller */
-        height: auto; /* for good aspect ratio */
-
-    }
-
-    .iconNumb {
-        color: black;
-        font-family: 'Segoe UI';
-        font-weight: 700;
-
-
-    }
-
-    .textUnderImg {
-        text-decoration: none;
-        color: black;
-        font-size: 12px;
-        font-family: 'Segoe UI light';
-
-
+        overflow: hidden;
     }
 
     /* Style inputs with type="text", select elements and textareas */
@@ -182,7 +82,7 @@
     }
     
     /* Style the submit button with a specific background color etc */
-    input[type=submit] {
+    button[type=submit] {
         background-color: #04AA6D;
         color: white;
         padding: 12px 20px;
@@ -192,7 +92,7 @@
     }
     
     /* When moving the mouse over the submit button, add a darker green color */
-    input[type=submit]:hover {
+    button[type=submit]:hover {
         background-color: #45a049;
     }
     
