@@ -43,17 +43,18 @@
 
     <div class="outercontainer">
         <div class="contact">
-            <form onsubmit = "emailSend(); reset(); return false;">
+            <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="17798ae2-b8df-46d4-b48a-a6fbafbcb101">
         
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <!-- <label for="fname">First Name</label> -->
+            <input type="text" id="fname" name="name" placeholder="Your name.">
         
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <!-- <label for="lname">Last Name</label> -->
+            <input type="text" id="lemail" name="email" placeholder="Your email.">
         
         
-            <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            <!-- <label for="subject">Subject</label> -->
+            <textarea id="subject" name="subject" placeholder="Your request.." style="height:200px"></textarea>
         
             <button type="submit" value="Submit">Send</button>
         
@@ -64,6 +65,9 @@
 
         </div>
       </div>
+
+      <script src="https://smtpjs.com/v3/smtp.js">
+      </script>
       <script src="Contact form to email.js">
 
       </script>
