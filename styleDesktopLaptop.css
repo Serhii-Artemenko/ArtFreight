@@ -119,13 +119,47 @@
     }
 
     /* this is for desktop/laptop header */
-    .uBarNoSing {
+    /* .uBarNoSing {
         text-decoration: none;
         color: black;
         font-family: 'Segoe UI light';
         font-size: 20px; 
         font-weight: bold;
 
+    } */
+
+    .uBarNoSing {
+        font-size: 20px; 
+        font-weight: bold;
+        color: black;
+        /* start glow in neon-green */
+        text-shadow:
+            0 0 5px  #39FF14,
+            0 0 10px #39FF14,
+            0 0 20px #39FF14,
+            0 0 40px #39FF14,
+            0 0 80px #39FF14;
+        animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+        /* green → blue */
+        0% {
+            text-shadow:
+            0 0 5px  #39FF14,
+            0 0 10px #39FF14,
+            0 0 20px #39FF14,
+            0 0 40px #39FF14,
+            0 0 80px #39FF14;
+        }
+        100% {
+            text-shadow:
+            0 0 10px  #00D4FF,
+            0 0 20px  #00D4FF,
+            0 0 40px  #00D4FF,
+            0 0 80px  #00D4FF,
+            0 0 160px #00D4FF;
+        }
     }
     .signUp {
         border: none;
