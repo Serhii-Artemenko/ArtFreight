@@ -2,7 +2,7 @@
 
     .header {
         
-            background-color: white;
+            background-color: white; /*this is not needed before in the after we add a white background */
             display: flex;
             width: 100%;
             height: 100px;
@@ -34,8 +34,30 @@
         z-index: -2;
     }
 
+    .contact::before{
+        content: "";
+        position: absolute;
+
+        width: 96%;      /* 120% of the header’s size, so it bleeds out */
+        height: 85%;     /* same vertically */
+
+        background: linear-gradient(
+            60deg,
+            #f79533, #f37055, #ef4e7b,
+            #a166ab, #5073b8, #1098ad,
+            #07b39b, #6fba82
+        );
+        filter: blur(15px);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
+
+        z-index: -2;/* put it below the white face but above the page background */
+       
+
+    }
+
     /* 3) Solid white “face” of the header */
-    #header::after {
+    #header::after{
         content: "";
         position: absolute;
         top: 0;
@@ -46,8 +68,18 @@
         z-index: -1;         /* above the glow, below the real content */
     }
 
+    /* .contact::after{
+        content: "";
+        position: absolute;
+    
+        width: 100%;
+        height: 100%;
+
+        z-index: -1;        
+    } */
+
     /* 4) On hover, fade the glow in */
-    #header:hover::before {
+    #header:hover::before, .contact:hover::before {
         opacity: 1;
         filter: blur(8px);
     }
@@ -206,12 +238,15 @@
     .outercontainer {
         
         
-        border-radius: 5px;
+        /* border-radius: 5px; */
         background-color: white;
         padding: 20px;
         display: flex;
+        /* height: calc(100% - 100px); */
     }
     .contact{
+        position: relative;
+        z-index: 0;
         width: 60%;
         height: 60%;
         margin-top: 5%;
