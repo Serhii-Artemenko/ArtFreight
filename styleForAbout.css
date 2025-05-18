@@ -1,0 +1,30 @@
+body {
+  /* background: url('abscolor3.jpg') center/cover fixed no-repeat; */
+  background-color: #124E65;
+  border-radius: 20px;
+}
+
+    #geckoContainer::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        top: 0; left: 0; right: 0; bottom: 0;
+        /* background: url(plane3.png) center/cover fixed no-repeat; */
+        background: url("abscolor3.jpg") no-repeat center center fixed;
+        background-size: cover;
+        background: #124E65;
+        color: white;
+        font: 700 1rem monospace;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: inherit;
+        transform: translateX(0);
+        transition: transform 2s ease-in-out;
+        width: 110%;
+        height: 110%;
+    }
+
+    #geckoContainer:hover::after {
+        transform: translateX(100%);
+    }
