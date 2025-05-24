@@ -388,14 +388,16 @@
 
     #textUnderAbout{
         position: static;
-        font-family: monospace;
+        font-family: cursive;
         display: block;
         width: 33%;
         color: white;
         margin-left: 5%;
         opacity: 0;
-        transform: translateY(3rem);
-        animation: fadeInUp 2s ease 3s forwards;
+        transform: translateY(10rem);
+        font-size: 1.5rem;
+        width: 60%;
+        animation: fadeInUp 2s ease forwards 3s;
     }
 
  
