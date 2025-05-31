@@ -15,43 +15,45 @@
 
 <body>
     <header class="header" id="header">
-        <div class = "logo">
-            <a href="index.html"><img src="LOGO2NOBCK.png" alt="Logo"></a>
+        <div class="logo">
+            <a href="#"><img src="LOGO2NOBCK.png" alt="Logo"></a>
         </div>
 
         <div class="hamburger" onclick="dropDownMenu()">
-           <a class = "hamUnderline" href = "#">☰</a> 
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-        <!-- navigation bar -->
-        <!-- <div class="navBar">
-            <a class="navB" href="#">Platform</a>
-            <a class="navB" href="#">Plans</a>
-            <a class="navB" href="#">Enterprise</a>
-            <a class="navB" href="#">Education</a>
-        </div> -->
-        <!-- Utility navigation bar -->
         <div class="utilNavBar">
-            <a class = "uBarNoSing" href="index.html">Home</a>
-            <a class = "uBarNoSing" href="#">About us</a>
-            <a class = "uBarNoSing" href="#">What we offer</a>
-            <a class = "uBarNoSing" href="contactuUs.html">Contact us</a>
+            <a class="uBarNoSing" href="#">Home</a>
+            <a class="uBarNoSing" href="aboutus.html">About us</a>
+            <a class="uBarNoSing" href="#">What we offer</a>
+            <a class="uBarNoSing" href="contactuUs.html">Contact us</a>
         </div>
-        
     </header>
+
 
     <div class="abstractcolorsContainer">
         <div id="typeAnimationDiv"><h1 id="typeAnimation">About Us:</h1></div>
         <div id="textAndGecko">
-        <p id="textUnderAbout">
-            To us, logistics is a quiet art — the choreography of movement, precision, and purpose. 
-            It is a dynamic field of innovation, where each assignment becomes a unique opportunity 
-            to craft intelligent, tailored solutions that anticipate needs, optimize efficiency, 
-            and elevate the client experience. Each challenge is a canvas; each solution, a bespoke 
-            composition flowing seamlessly with our client’s vision
-        </p>
+            <p id="textUnderAbout">
+                To us, logistics is a quiet art — the choreography of movement, precision, and purpose. 
+                It is a dynamic field of innovation, where each assignment becomes a unique opportunity 
+                to craft intelligent, tailored solutions that anticipate needs, optimize efficiency, 
+                and elevate the client experience. Each challenge is a canvas; each solution, a bespoke 
+                composition flowing seamlessly with our client’s vision
+            </p>
+
+            <div class="stack-container">
+            <div class="layer" style="background: crimson;"></div>
+            <div class="layer" style="background: darkorange;"></div>
+            <div class="layer" style="background: gold;"></div>
+            <div class="layer" style="background: seagreen;"></div>
+            <div class="layer" style="background: royalblue;"></div>
+            </div>
         
-        <div id = "geckoContainer">  </div>
+        <!-- <div id = "geckoContainer">  </div> -->
         </div>
 
         <!-- <p class="cursor typewriter-animation">Hi there, I'm a Typewriter Animation. For now there is nothing but updates are coming soon!</p> -->
@@ -65,8 +67,7 @@
 
     <script>
         function dropDownMenu() {
-            const navBar = document.querySelector('.navBar');
-            navBar.classList.toggle('show');
+            document.getElementById('header').classList.toggle('open');
         }
     </script>
 </body>

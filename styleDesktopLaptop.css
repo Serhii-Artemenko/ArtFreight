@@ -1,4 +1,13 @@
 /* @media screen and (min-width: 1000px) { */
+    html {
+    box-sizing: border-box;
+    margin: 0;    /* also reset default body margin */
+    }
+    *,
+    *::before,
+    *::after {
+    box-sizing: inherit;
+    }
 
     .header {
         
@@ -487,3 +496,114 @@
 
 
 /* } */
+
+
+/* 1) Base: hide hamburger, show full nav */
+.hamburger {
+  display: none;
+}
+.utilNavBar {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+/* 2) Mobile breakpoint */
+@media (max-width: 768px) {
+  /* .header {
+    padding: 0 1rem;
+    align-items: center;
+    position: relative;
+  } */
+.header {
+    /* instead of width:100% + padding → overflow, do this: */
+    /* width: calc(100%- 0.5rem); */
+    width: 100%;
+    /* padding: 0 1rem;
+    overflow-x: hidden;
+    z-index: 20; */
+  }
+  
+    .logo img {
+        display: none;
+        /* height: 100%;  */
+        /* width: auto; for good aspect ratio */
+    }
+
+  /* show hamburger */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20; /* above everything */
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    margin: 4px 15px;
+    background: #333;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* hide main nav, prepare it for sliding down */
+  .utilNavBar {
+    position: absolute;
+  
+    
+    top: 100%;      /* right under the header */
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: white;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    
+  }
+  .utilNavBar a {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #eee;
+  }
+
+  /* when .open is toggled on the header… */
+  .header.open .utilNavBar {
+    max-height: 300px; /* big enough to show all links */
+  }
+  .header.open .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(10px,10px);
+    
+  }
+  .header.open .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .header.open .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px,-5px);
+    
+  }
+
+    .logo img {
+    display: block;
+  }
+
+  /* 2) Make sure your header is still flex and centered vertically */
+  .header {
+    display: flex;
+    align-items: center;
+    /* we’ll push the logo with margin on itself, so flex‐start is fine */
+    justify-content: flex-start;
+  }
+
+  /* 3) Re-order: hamburger first, logo second */
+  .hamburger {
+    order: 1;
+  }
+  .logo {
+    order: 2;
+    width: 50%;
+    height: 100%;
+    margin-left: auto;    /* eats up all free space, pushing itself to the right */
+  }
+
+}
