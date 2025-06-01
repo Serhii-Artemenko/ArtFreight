@@ -4,6 +4,7 @@
 
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="default.css">
     <link rel="stylesheet" href="styleDesktopLaptop.css">
     <!-- <link rel="stylesheet" href="styleTablet.css"> -->
@@ -14,30 +15,23 @@
 
 <body>
     <header class="header" id="header">
-        <div class = "logo">
-             <a href="index.html"><img src="LOGO2NOBCK.png" alt="Logo"></a>
+        <div class="logo">
+            <a href="#"><img src="LOGO2NOBCK.png" alt="Logo"></a>
         </div>
 
+        <!-- new hamburger markup -->
         <div class="hamburger" onclick="dropDownMenu()">
-           <a class = "hamUnderline" href = "#">☰</a> 
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
-        <!-- navigation bar -->
-        <!-- <div class="navBar">
-            <a class="navB" href="#">Platform</a>
-            <a class="navB" href="#">Plans</a>
-            <a class="navB" href="#">Enterprise</a>
-            <a class="navB" href="#">Education</a>
-        </div> -->
-
-        <!-- Utility navigation bar -->
         <div class="utilNavBar">
-            <a class = "uBarNoSing" href="index.html">Home</a>
-            <a class = "uBarNoSing" href="aboutus.html">About us</a>
-            <a class = "uBarNoSing" href="#">What we offer</a>
-            <a class = "uBarNoSing" href="#">Contact us</a>
+            <a class="uBarNoSing" href="index.html">Home</a>
+            <a class="uBarNoSing" href="aboutus.html">About us</a>
+            <a class="uBarNoSing" href="#">What we offer</a>
+            <a class="uBarNoSing" href="contactuUs.html">Contact us</a>
         </div>
-        
     </header>
  
 
@@ -75,10 +69,9 @@
       
 
     <script>
-        function dropDownMenu() {
-            const navBar = document.querySelector('.navBar');
-            navBar.classList.toggle('show');
-        }
+    function dropDownMenu() {
+        document.getElementById('header').classList.toggle('open');
+    }
     </script>
 </body>
 </html>
