@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 
@@ -71,5 +71,226 @@
             document.getElementById('header').classList.toggle('open');
         }
     </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Prevent search engines from indexing the temporary page -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Art Freight Logistics | Website Update</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            overflow: hidden;
+            color: #ffffff;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(65, 105, 225, 0.35),
+                    transparent 40%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(0, 180, 170, 0.2),
+                    transparent 40%
+                ),
+                #08111f;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 760px;
+            padding: 65px 45px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+        }
+
+        .label {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 8px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            color: #b9d6ff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin-bottom: 18px;
+            font-size: clamp(36px, 7vw, 64px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .accent {
+            color: #68a9ff;
+        }
+
+        .description {
+            max-width: 570px;
+            margin: 0 auto 34px;
+            color: #c5cedb;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .divider {
+            width: 70px;
+            height: 3px;
+            margin: 0 auto 32px;
+            border-radius: 999px;
+            background: linear-gradient(
+                90deg,
+                #68a9ff,
+                #49d6c8
+            );
+        }
+
+        .contact-text {
+            margin-bottom: 16px;
+            color: #9ba9ba;
+            font-size: 14px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 10px;
+            color: #08111f;
+            background: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(104, 169, 255, 0.3);
+        }
+
+        .footer {
+            margin-top: 38px;
+            color: #718096;
+            font-size: 13px;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.35;
+        }
+
+        .circle-one {
+            top: -100px;
+            right: -100px;
+            width: 250px;
+            height: 250px;
+            background: #2859c5;
+        }
+
+        .circle-two {
+            bottom: -130px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: #007e79;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 45px 24px;
+            }
+
+            h1 {
+                letter-spacing: -1px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle circle-one"></div>
+    <div class="circle circle-two"></div>
+
+    <main class="container">
+        <div class="label">Website Update</div>
+
+        <h1>
+            Art Freight
+            <span class="accent">Logistics</span>
+        </h1>
+
+        <div class="divider"></div>
+
+        <p class="description">
+            Our new website is currently under construction.
+            We remain fully operational and available to assist
+            with your international logistics and freight requirements.
+        </p>
+
+        <p class="contact-text">
+            Contact our team
+        </p>
+
+        <a
+            class="contact-button"
+            href="mailto:YOUR-EMAIL@EXAMPLE.COM"
+        >
+            Send Us an Email
+        </a>
+
+        <p class="footer">
+            International freight solutions for specialized cargo
+        </p>
+    </main>
 </body>
 </html>
