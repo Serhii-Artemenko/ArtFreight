@@ -1,0 +1,128 @@
+Notes for myself:
+
+1.  Python extracts text form email and pdf
+2.  Python creates a dictionary with this text (for easy info mapping) which look like this:
+    sources = {
+    "email_1":{
+    "filename": None,
+    "page" : None,
+    "text": "please find the attached information..."
+
+        	}
+        "pdf_1_page_1":{
+        	...
+        	}
+
+}
+
+3. We give this dict + GOOD PROMPT to our LLM. The LLM gives us back a dict with "All the information for filling which looks like this:
+   {field_1 : {candidates:[list of dict each dict has a value an evidence and an uncertainty, evidence itself is a list of dicts which contains a source and a quote in each dict]}, field_2 : {}}
+   Example:
+   {
+   "pickup_location": {
+   "candidates": [
+   {
+   "value": "WANDO WELCH TERMINAL, 400 Long Point Rd, Mount Pleasant, SC 29464",
+   "evidence": [
+   {
+   "source_id": "email_1",
+   "quote": "From:\n\nWANDO WELCH TERMINAL\n\n400 Long Point Rd, Mount Pleasant, SC 29464"
+   }
+   ],
+   "uncertainty": null
+   }
+   ]
+   }
+   }
+
+4. Python checks that what the LLM gave us makes sense (verifies that its exits etc.)
+
+5. Python created a shipment record (I think it basically takes the important information from the LLM dict output and put it in a structured easy to read format)
+   here is an example:
+   shipment = {
+   "transport_mode": "sea",
+   "container_number": "CRSU9250389",
+   "pickup_location": "...",
+   "delivery_location": "...",
+   "carrier": None,
+   "waybill_number": None,
+   "arrival_date": None
+   }
+
+I am still not sure about what this part means:
+{{ port_of_loading }}
+
+The air template might have:
+{{ origin_airport }}
+
+Internally, both can receive a value from:
+shipment["origin"]
+
+like from what I understand "origin" is a key in the shipment dict so why don;t we have the "origin" key in our example above? Like we have transport mode etc... but not origin.
+
+I am also not sure what "This separation means:
+
+- Extraction does not depend on Word formatting or PDF coordinates.
+- Both templates can use the same validation and review logic.
+- Changing a template’s layout does not require rewriting the AI extraction.
+- Information such as pickup date and arrival date remains separate even if only one appears on a particular template.
+  For V1, defining this shared structure is a design step you do once, not an extra AI processing stage." means.
+  Like do you mean that it doesn't matter which template we use (sea or air) we will still do the same steps (extraction validation etc..)?
+
+I am not sure about what is the purpose of this:
+drafts[draft_id] = {
+"owner_id": staff_user_id,
+"sources": sources,
+"extraction": extracted_candidates,
+"form_values": proposed_values,
+"validation": field_statuses,
+"template_id": "sea_do",
+"revision": 1,
+"expires_at": expiry_time
+}
+
+like are those all the drafts that a user made during a session? if so then shouldn't drafts[draft_id] just give a shipment dict? something like this:
+drafts = [shipment_1, shipment_2, ... shipment_n] where n is the number of D.O. made in this one session?
+
+Also I am not sure about this:
+"Use one backend process for this simplest version.
+A restart loses drafts.
+Drafts expire and are deleted.
+Every request checks that the signed-in user owns the draft.
+Original PDFs can be kept in a private temporary folder for preview, then deleted with the draft.". Specifically this part:
+"Drafts expire and are deleted.
+Every request checks that the signed-in user owns the draft." like what do you mean draft expires and are deleted? Like as soon as the person will refresh the page since its a server in memory dict then it will get deleted as soon as the person refreshes no? And what does "Every request checks that the signed-in user owns the draft" means? and yesa about that I want you to explain how these serve side things work like let's say I will have 2 users using this DO filler what exactly happens on my servers? Like each user will get its on python environment and like the code will exactu for each user separately and each one will have its one server side "in-memeory"? Like how does it work? Just curious for me as long as it will work for like 5 users to do 1 DO at the same time its more then enough.
+
+After you will answer these question I will give you the exact templates for and Air and sea D.O. and an exact list of the required fields and an example of a filled D.O. for both Air and Sea with their corresponding email and pdfs.
+
+======= Full description and examples=====
+Ok so for the Air shipments (import/export) here are the fields which are the most important and which are usually filled:
+
+1. DATE (this is just the current date)
+2. OUR FILE NO. (ITS THE IDENTIFIER FOR THE SHIPMENT) in our case it is always or almost always in the email and starts with "HNXO". The same FILE NO should be written in the "INVOCING REFERENCE" field.
+3. Pickup (Address where the trucker should pick up the goods from). If an phone number/ name for the pick up is provided then its a good idea to write it in this field. (But don't add any phone number/name it has to be related to the pickup location.
+4. Delivery to (The Address to which the driver must deliver the goods to) same applies for phone number and name (if they are present for this field then add them but dont add a name/ phone number if you are not sure that its related to the delivery address
+5. ROUTE This is usually just the Origin airport and destination airports in a format like this: Origin airPort--Destination airport
+6. Bill to (this field is static it will always contain the same information so you dont even have to worry about it we will just write it in the form)
+7. AWB NO. This is usually found in the pdf (in the air waybill)
+8. Date of arrival this is the date on which the goods will be delivered to the destination port (This has a value only if its and import (meaning something came from somewhere to an airport and is waiting to be delivered to the destination address) and not an export)
+9. Carrier its the company doing the sea/air transport (so its not the trucker) (e.g. Hapag-Lloyd) it is always in the somewhere in the pdf (often times you see their logo in the header or something else)
+10. Origin port The port of origin (for import it can come from anywhere, and for export usually the Delivery to address is almost the the address as the address for the origin port)
+11. Destination port the port of destination (usually when its import the pickup is the almost the same address as the port of destination itself, while for export the port of destination can be anywhere).
+
+12. Mark (this is where you describe what is being transported usually a container or a pallet) (usually found in the pdf but email also
+13. description of what is inside the pallet/container (usually "show equipment" or something along those lines) IMPORTANT NOTE : for a container you also always write the container no and the seal no
+14. PKGS this is the number of packages in the pallet/container (Usually its written in the pdf) but if no information is available then the default is 1.
+15. Gross weight this is usually written in the pdf but sometimes also in the email (in the pdf its usually called the same thing "gross weight").
+
+Those 14 are the most important fields. All the other fields are left empty we don't care about them the only fields that we care are the 14 I mentioned above. If there is no information about any of these 14 fields then we just leave it empty.
+
+Sometimes, the PDF may contain information for more then one container. How we handle those is simple, the number of container equals the number of D.O. that we need to make for this PDF. Everything stays the same when there is more then one container the only fields which change are the fields 12, 13, 14 (and often times 12 stays the same) what usually changes is only the 13 and 14 since the container no, seal no and weight will be different.
+
+Ok I think that I explain more or less everything for the Air shipments (import/export) if you have any questions ask them if not Then just say that you understood and I will give you some examples (email+pdf and the filled D.O.)
+
+=======IMPORTANT NOTE=====
+
+1. Air import and export
+2. Sea import and export (usually has one more field the empty return field)
+3. Booking no (not sure what this is) this is export for sea
