@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Air D.O. preview — {{ file_number or awb_number or 'Draft' }}</title>
+<style>
+  @page { size: Letter; margin: 10mm; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #111; background: #e9edf1; font: 10pt Arial, sans-serif; }
+  .page { width: 195.9mm; margin: 10mm auto; padding: 0; background: white; }
+  .toolbar { width: 195.9mm; margin: 6mm auto; font: 14px Arial, sans-serif; }
+  .toolbar p { margin: 6px 0; }
+  button { padding: 8px 14px; cursor: pointer; }
+  .header { display: flex; justify-content: space-between; gap: 8mm; padding: 2mm 0 5mm; align-items: center; }
+  .company { font-size: 8.5pt; line-height: 1.35; padding-left: 5mm; }
+  .title { border: 1px solid #405986; width: 70mm; min-height: 24mm; padding: 7mm 4mm; color: #526581; font-size: 16pt; }
+  .preview-label { display: block; font-size: 8pt; margin-top: 2mm; letter-spacing: 1px; }
+  .references { display: grid; grid-template-columns: 27% 27% 1fr; gap: 2mm; margin-bottom: 3mm; }
+  .reference { border: 1px solid #222; padding: 1.5mm 2mm; min-width: 0; }
+  .label { display: block; font-size: 7.5pt; font-style: italic; margin-bottom: 1.3mm; }
+  .reference .label { text-align: center; }
+  .notice { font-size: 7.5pt; line-height: 1.25; }
+  .value { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.3; }
+  .main { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; align-items: start; }
+  .left, .right { min-width: 0; }
+  .left-field { border-left: 2px solid #405986; border-bottom: 1px solid #b1bbce; padding: 1.5mm 2mm 2mm; margin-bottom: 3mm; break-inside: avoid; }
+  .compact { min-height: 13mm; }
+  .address { min-height: 31mm; }
+  .bill { min-height: 21mm; }
+  .right { border: 1px solid #222; }
+  .right-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #222; }
+  .right-cell { min-width: 0; min-height: 11mm; padding: 1.3mm 2mm; break-inside: avoid; }
+  .right-cell + .right-cell { border-left: 1px solid #bbb; }
+  .wide { grid-column: span 2; }
+  .remarks { min-height: 32mm; padding: 1.5mm 2mm; }
+  .invoice { margin: 5mm 2mm; }
+  .appt { font-size: 8pt; font-style: italic; margin-top: 5mm; }
+  .cargo { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 1mm; }
+  .cargo th, .cargo td { border: 1px solid #222; padding: 2mm; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+  .cargo th { background: #eee; font-size: 7.5pt; }
+  .cargo td { height: 20mm; }
+  .cargo thead { display: table-header-group; }
+  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 3mm; break-inside: avoid; font-size: 8pt; }
+  .pod { border: 1px solid #222; padding: 2mm; min-height: 35mm; line-height: 1.6; }
+  .pod a { font-weight: bold; color: #1744ad; }
+  .original { color: #c32626; font-weight: bold; margin: 1mm 0 2mm; }
+  .signature { border: 1px solid #888; padding: 1.5mm; margin-top: 2mm; }
+  .signature-line { margin-top: 4mm; display: flex; gap: 2mm; font-size: 7pt; }
+  .line { flex: 1; border-bottom: 1px solid #777; min-width: 8mm; }
+  .footer { margin-top: 2mm; text-align: right; font-size: 7pt; color: #666; }
+  @media screen { .page { padding: 8mm; width: 211.9mm; box-shadow: 0 2px 16px #0002; } }
+  @media print {
+    body { background: white; }
+    .toolbar { display: none; }
+    .page { width: auto; margin: 0; box-shadow: none; }
+    * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button onclick="window.print()">Print / Save as PDF</button>
+  <p>Preview only — review shipment values before use. Print on Letter, scale 100%, headers and footers off.</p>
+  {% if review_items %}<p><strong>Fields to review:</strong> {{ review_items | join(', ') }}</p>{% endif %}
+</div>
+<main class="page">
+  <header class="header">
+    <div class="company"><strong>HENX USA LLC</strong><br>1800 2ND STREET, SUITE 708<br>SARASOTA, FL, 34236, UNITED STATES<br>TEL: 714-206-6942<br>EMAIL: usa@henxgroup.com</div>
+    <div class="title">Delivery order<span class="preview-label">DRAFT — FOR REVIEW</span></div>
+  </header>
+  <section class="references">
+    <div class="reference"><span class="label">DATE</span><div class="value">{{ date }}</div></div>
+    <div class="reference"><span class="label">OUR FILE NO.</span><div class="value">{{ file_number }}</div></div>
+    <div class="reference notice">THE MERCHANDISE DESCRIBED BELOW<br>WILL BE ENTERED AND/OR FORWARDED AS FOLLOWS:</div>
+  </section>
+  <section class="main">
+    <div class="left">
+      <div class="left-field compact"><span class="label">TRUCKER</span><div class="value">{{ trucker }}</div></div>
+      <div class="left-field address"><span class="label">PICKUP</span><div class="value">{{ pickup_location }}</div>{% if pickup_date %}<div class="value">Pickup: {{ pickup_date }}</div>{% endif %}</div>
+      <div class="left-field address"><span class="label">DELIVERY TO</span><div class="value">{{ delivery_location }}</div>{% if delivery_date %}<div class="value">Delivery: {{ delivery_date }}</div>{% endif %}</div>
+      <div class="left-field compact"><span class="label">ROUTE</span><div class="value">{{ route }}</div></div>
+      <div class="left-field bill"><span class="label">BILL TO</span><div class="value">{{ bill_to }}</div></div>
+    </div>
+    <div class="right">
+      <div class="right-row"><div class="right-cell"><span class="label">AWB NO.</span><div class="value">{{ awb_number }}</div></div><div class="right-cell"><span class="label">HAWB NO.</span></div></div>
+      <div class="right-row"><div class="right-cell"><span class="label">AMS AWB NO.</span></div><div class="right-cell"><span class="label">PO NO.</span></div></div>
+      <div class="right-row"><div class="right-cell wide"><span class="label">I.T. NO. &amp; PLACE</span></div></div>
+      <div class="right-row"><div class="right-cell wide"><span class="label">DATE OF ARRIVAL</span><div class="value">{{ arrival_date }}</div></div></div>
+      <div class="right-row"><div class="right-cell wide"><span class="label">LAST FREE DAY</span></div></div>
+      <div class="right-row"><div class="right-cell wide"><span class="label">CARRIER</span><div class="value">{{ carrier }}</div></div></div>
+      <div class="right-row"><div class="right-cell"><span class="label">ORIGIN PORT</span><div class="value">{{ origin_airport }}</div></div><div class="right-cell"><span class="label">DESTINATION PORT</span><div class="value">{{ destination_airport }}</div></div></div>
+      <div class="remarks"><span class="label">REMARK</span><div class="invoice"><span class="label">INVOICING REFERENCE:</span><div class="value">{{ invoicing_reference }}</div></div><div class="appt">APPT REQUIRED,</div></div>
+    </div>
+  </section>
+  <table class="cargo">
+    <colgroup><col style="width:20%"><col style="width:36%"><col style="width:10%"><col style="width:17%"><col style="width:17%"></colgroup>
+    <thead><tr><th>MARK</th><th>DESCRIPTION</th><th>PKGS</th><th>GROSS WEIGHT</th><th>CHARGEABLE WEIGHT</th></tr></thead>
+    <tbody><tr><td class="value">{{ mark }}</td><td class="value">{{ goods_description }}</td><td class="value">{{ package_count }}</td><td class="value">{{ gross_weight }}</td><td class="value">{{ chargeable_weight }}</td></tr></tbody>
+  </table>
+  <section class="bottom">
+    <div class="pod">P.O.D REQUIRED WITH BILLING INVOICE<br>EMAIL PROOF OF DELIVERY TO<br><a href="mailto:usa@henxgroup.com">usa@henxgroup.com</a></div>
+    <div><div class="original">DELIVERY ORDER — DRAFT</div><strong>INLAND FREIGHT:</strong> PREPAID
+      <div class="signature">Henx USA LLC</div>
+      <div class="signature">CARRIER SIGNATURE / DATE<div class="signature-line">CARRIER:<span class="line"></span>DATE:<span class="line"></span></div></div>
+      <div class="signature">RECEIVED IN GOOD ORDER / DATE<div class="signature-line">BY:<span class="line"></span>DATE:<span class="line"></span></div></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

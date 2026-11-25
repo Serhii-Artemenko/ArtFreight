@@ -1,0 +1,65 @@
+trucker (missing), carrier (multiple candidates) and awb_number (a normal matched field, for contrast). Only a few keys are shown in each.
+
+1. shipment (the extraction, input to build_air_draft)
+python
+shipment.awb_number.candidates = [
+    Candidate(value="016-12345678",
+              evidence=[Evidence(source_id="email_1", quote="AWB 016-12345678")],
+              uncertainty=None),
+]
+
+shipment.trucker.candidates = []          # missing: zero candidates
+
+shipment.carrier.candidates = [           # multiple candidates
+    Candidate(value="Air Canada",
+              evidence=[Evidence(source_id="email_1", quote="flying with Air Canada")],
+              uncertainty=None),
+    Candidate(value="WestJet Cargo",
+              evidence=[Evidence(source_id="bol.pdf", quote="Carrier: WestJet Cargo")],
+              uncertainty=None),
+]
+2. validation (input, one status per field)
+python
+validation = {
+    "awb_number": {"status": "evidence_matched"},
+    "trucker":    {"status": "missing"},
+    "carrier":    {"status": "multiple_candidates"},
+    ...
+}
+
+The code only reads the "status" key. Your real validation dicts probably hold more, such as per-quote results.
+
+3. After the loop in build_air_draft
+python
+form_values = {
+    "awb_number": "016-12345678",   # evidence_matched: first candidate's value
+    "trucker": "",                  # else branch
+    "carrier": "",                  # else branch
+    ...
+}
+
+field_statuses = {
+    "awb_number": "evidence_matched",
+    "trucker": "missing",
+    "carrier": "multiple_candidates",
+    ...
+}
+
+The two non-matched fields end up the same in form_values (blank), and only field_statuses tells them apart.
+
+4. What build_air_draft returns
+python
+{
+    "template_id": "air_do",
+    "form_values":   {"awb_number": "016-12345678", "trucker": "", "carrier": "", ...},
+    "field_statuses": {"awb_number": "evidence_matched",
+                       "trucker": "missing",
+                       "carrier": "multiple_candidates", ...},
+}
+5. What the renderer computes from it
+python
+review_items = ["carrier"]    # "trucker" is NOT here: "missing" isn't in the review set
+What is and isn't preserved
+Printed form: AWB filled, trucker blank, carrier blank.
+Review list: carrier only.
+Still in shipment and validation (not in the draft): both carrier candidates and their evidence, so a person can pick between Air Canada and WestJet Cargo.
